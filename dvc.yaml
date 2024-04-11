@@ -1,4 +1,9 @@
 stages:
+  primary_source_check:
+    cmd: python stages/00_external_dependency.py
+    outs:
+      - download/data-links.txt
+  
   process_data:
     cmd: python stages/01_download_convert.py
     deps:

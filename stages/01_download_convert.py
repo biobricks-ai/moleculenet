@@ -6,6 +6,11 @@ import tarfile
 import scipy.io
 from io import BytesIO
 import shutil
+import hashlib
+
+file_hash = hashlib.md5(open('download/data-links.txt', 'rb').read()).hexdigest()
+msg = "ATTENTION: Primary data source updated. Script currently hardcoded for original source. Modify script to accommodate new source."
+assert file_hash == '605b8cc26244681afec7a73e3f29aecd', msg
 
 datasets = {
     'muv': 'https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/muv.csv.gz',
