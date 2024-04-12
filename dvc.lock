@@ -1,25 +1,16 @@
+---
 schema: '2.0'
 stages:
-  1-stage:
-    cmd: Rscript stages/01-stage.R
-    deps:
-    - path: stages/01-stage.R
-      md5: c468dc14527e00c339f146e1dba2bd3b
-      size: 118
-    outs:
-    - path: data/mtcars.parquet
-      md5: 77cf29accf9535522fad7db1486eff9a
-      size: 6243
   process_data:
     cmd: python stages/01_download_convert.py
     deps:
-    - path: stages/01_download_convert.py
-      hash: md5
+    - hash: md5
       md5: 295a636c6d9b6bf071d3773a174c75ca
+      path: stages/01_download_convert.py
       size: 3196
     outs:
-    - path: brick
-      hash: md5
+    - hash: md5
       md5: 71422d23a94b6b1780c55bbe9f96597b.dir
-      size: 8556922840
       nfiles: 52955
+      path: brick
+      size: 8556922840
