@@ -1,6 +1,12 @@
----
 schema: '2.0'
 stages:
+  primary_source_check:
+    cmd: python stages/00_external_dependency.py
+    outs:
+    - path: download/data-links.txt
+      hash: md5
+      md5: 605b8cc26244681afec7a73e3f29aecd
+      size: 1327
   process_data:
     cmd: python stages/01_download_convert.py
     deps:
@@ -9,16 +15,8 @@ stages:
       md5: 5d517b69e4c2517b3c558b591fdce3ae
       size: 3410
     outs:
-    - hash: md5
-      md5: 71422d23a94b6b1780c55bbe9f96597b.dir
-      nfiles: 52955
-      path: brick
+    - path: brick
+      hash: md5
+      md5: c55f80c2f6390a740188c0ba86b7a8b7.dir
       size: 8556922840
       nfiles: 52955
-  primary_source_check:
-    cmd: python stages/00_external_dependency.py
-    outs:
-    - path: download/data-links.txt
-      hash: md5
-      md5: 605b8cc26244681afec7a73e3f29aecd
-      size: 1327
