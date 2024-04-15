@@ -7,16 +7,34 @@ stages:
       hash: md5
       md5: 605b8cc26244681afec7a73e3f29aecd
       size: 1327
-  process_data:
-    cmd: python stages/01_download_convert.py
+  download:
+    cmd: python stages/01_download.py
     deps:
-    - path: stages/01_download_convert.py
+    - path: stages/01_download.py
       hash: md5
-      md5: 5d517b69e4c2517b3c558b591fdce3ae
-      size: 3410
+      md5: e9a9ef4ea23483642d5e50858859a398
+      size: 2165
+    outs:
+    - path: download/01_download
+      hash: md5
+      md5: 55df3722fda5501cd1e67540bc721895.dir
+      size: 2094598451
+      nfiles: 14
+  process:
+    cmd: python stages/02_convert.py
+    deps:
+    - path: download/01_download
+      hash: md5
+      md5: 55df3722fda5501cd1e67540bc721895.dir
+      size: 2094598451
+      nfiles: 14
+    - path: stages/02_convert.py
+      hash: md5
+      md5: 2c95019829b8d7dc0f15f57ce0cd8914
+      size: 819
     outs:
     - path: brick
       hash: md5
-      md5: c55f80c2f6390a740188c0ba86b7a8b7.dir
-      size: 8556922840
-      nfiles: 52955
+      md5: db537d30884a70e20c1cb5e2115c9d15.dir
+      size: 2081834444
+      nfiles: 14

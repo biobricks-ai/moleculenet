@@ -4,9 +4,17 @@ stages:
     outs:
       - download/data-links.txt
   
-  process_data:
-    cmd: python stages/01_download_convert.py
+  download:
+    cmd: python stages/01_download.py
     deps:
-      - stages/01_download_convert.py
+      - stages/01_download.py
+    outs:
+      - download/01_download
+
+  process:
+    cmd: python stages/02_convert.py
+    deps:
+      - stages/02_convert.py
+      - download/01_download
     outs:
       - brick
